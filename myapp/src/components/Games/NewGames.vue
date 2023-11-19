@@ -77,10 +77,11 @@
           const ad = {
             title: this.title,
             description: this.description,
-            promo: this.promo
+            promo: this.promo,
+            imageSrc: 'https://www.digiseller.ru/preview/913799/p1_3757622_1bec89f6.jpg'
           }
 
-          console.log(ad)
+          this.$store.dispatch('createAd', ad)
         }
       }
     }

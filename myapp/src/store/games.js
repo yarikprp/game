@@ -1,10 +1,10 @@
 export default {
   state: {
-    ads: [
+    games: [
       {
         title: 'First ad',
         description: 'Hello i am description',
-        promo: false,
+        promo: true,
         imageSrc: 'https://www.digiseller.ru/preview/913799/p1_3757622_1bec89f6.jpg',
         id: '123'
       },
@@ -24,19 +24,34 @@ export default {
       }
     ]
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    createAd (state, payload) {
+      state.games.push(payload)
+    }
+  },
+  actions: {
+    createAd ({commit}, payload) {
+      payload.id = 'qqwqweqweqw'
+
+      commit('createAd', payload)
+    }
+  },
   getters: {
-    ads (state) {
-      return state.ads
+    games (state) {
+      return state.games
     },
-    promoAds (state) {
-      return state.ads.filter(ad => {
-        return ad.promo
+    promoGames (state) {
+      return state.games.filter(games => {
+        return games.promo
       })
     },
-    myAds (state) {
-      return state.ads
+    myGames (state) {
+      return state.games
+    },
+    gamesId (state) {
+      return gamesId => {
+        return state.games.find(games => games.id === gamesId)
+      }
     }
   }
 }

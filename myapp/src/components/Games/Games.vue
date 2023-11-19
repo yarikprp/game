@@ -4,12 +4,12 @@
       <v-flex xs12>
         <v-card>
           <v-card-media
-            src="https://www.digiseller.ru/preview/913799/p1_3757622_1bec89f6.jpg"
+            :src="games.ImageSrs"
             height="300px"
           ></v-card-media>
           <v-card-text>
-            <h1 class="text--primary">lorem</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, ipsa?</p>
+            <h1 class="text--primary">{{ games.title }}</h1>
+            <p>{{ games.description }}</p>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -24,8 +24,11 @@
 
 <script>
   export default {
-    data () {
-      return {}
+    computed: {
+      games () {
+        const id = this.id
+        return this.$store.getters.gamesId(id)
+      }
     }
   }
 </script>
