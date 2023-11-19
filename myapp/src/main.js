@@ -19,14 +19,13 @@ new Vue({
   template: '<App/>',
   created () {
     fb.initializeApp({
-      apiKey: 'YourApiKey',
-      authDomain: 'YourAuthDomain',
-      databaseURL: 'YourDatabaseURL',
-      projectId: 'YourProjectId',
-      storageBucket: 'YourStorageBucket',
-      messagingSenderId: 'YourMessagingSenderId',
-      appId: 'YourAppId',
-      measurementId: 'YourMeasurementId'
+      apiKey: 'AIzaSyDL9CsbaZCM5REhzXH46m2Y2GhOyODDIME',
+      authDomain: 'itsi-d7b5f.firebaseapp.com',
+      projectId: 'itsi-d7b5f',
+      storageBucket: 'itsi-d7b5f.appspot.com',
+      messagingSenderId: '492925303666',
+      appId: '1:492925303666:web:f38342e050292a0c19fbeb',
+      measurementId: 'G-XVKPS40VY2'
     })
   }
 })
