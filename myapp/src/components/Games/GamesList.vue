@@ -6,26 +6,26 @@
 
         <v-card
           class="elevation-10 mb-3"
-          v-for="ad in myGames"
-          :key="ad.id"
+          v-for="games in myGames"
+          :key="games.id"
         >
           <v-layout row>
             <v-flex xs4>
               <v-card-media
-                :src="ad.imageSrc"
+                :src="games.imageSrc"
                 height="160px"
               ></v-card-media>
             </v-flex>
             <v-flex xs8>
               <v-card-text>
-                <h2 class="text--primary">{{ad.title}}</h2>
-                <p>{{ad.description}}</p>
+                <h2 class="text--primary">{{games.title}}</h2>
+                <p>{{games.description}}</p>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn
                   class="info"
-                  :to="'/ad/' + ad.id"
+                  :to="'/games/' + games.id"
                 >Open</v-btn>
               </v-card-actions>
             </v-flex>

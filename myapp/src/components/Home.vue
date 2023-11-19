@@ -10,7 +10,7 @@
               :key="game.id"
               :src="game.imageSrc"
             >
-              <div class="car-link">
+              <div class="game-link">
                 <v-btn class="error" :to="'/games/' + game.id">{{ game.title }}</v-btn>
               </div>
             </v-carousel-item>
@@ -82,7 +82,7 @@ export default {
 </script>
 
 <style scoped>
-  .car-link {
+  .game-link {
     position: absolute;
     bottom: 50px;
     left: 50%;

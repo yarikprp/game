@@ -89,8 +89,8 @@ export default {
       if (this.isUserLoggedIn) {
         return [
           {title: 'Orders', icon: 'bookmark_border', url: '/orders'},
-          {title: 'New ad', icon: 'note_add', url: '/new'},
-          {title: 'My ads', icon: 'list', url: '/list'}
+          {title: 'New games', icon: 'note_add', url: '/new'},
+          {title: 'My games', icon: 'list', url: '/list'}
         ]
       }
 
