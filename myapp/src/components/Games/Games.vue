@@ -13,7 +13,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <addEditGamesModal :games="games"></addEditGamesModal>
+            <addEditGamesModal :games="games" v-if="isOwner"></addEditGamesModal>
             <v-btn class="success">Buy</v-btn>
           </v-card-actions>
         </v-card>
@@ -42,6 +42,9 @@ export default {
     },
     loading () {
       return this.$store.getters.loading
+    },
+    isOwner () {
+      return this.games && this.games.ownerId === this.$store.getters.user.id
     }
   },
   components: {

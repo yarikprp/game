@@ -21,6 +21,14 @@ export default {
     },
     loadGames (state, payload) {
       state.games = payload
+    },
+    updateGames (state, {title, description, id}) {
+      const game = state.games.find(a => {
+        return a.id === id
+      })
+
+      game.title = title
+      game.description = description
     }
   },
   actions: {
@@ -85,6 +93,24 @@ export default {
         commit('setLoading', false)
         throw error
       }
+    },
+    async updateGames ({commit}, {title, description, id}) {
+      commit('clearError')
+      commit('setLoading', true)
+
+      try {
+        await fb.database().ref('games').child(id).update({
+          title, description
+        })
+        commit('updateGames', {
+          title, description, id
+        })
+        commit('setLoading', false)
+      } catch (error) {
+        commit('setError', error.message)
+        commit('setLoading', false)
+        throw error
+      }
     }
   },
   getters: {
@@ -96,8 +122,10 @@ export default {
         return games.promo
       })
     },
-    myGames (state) {
-      return state.games
+    myGames (state, getters) {
+      return state.games.filter(game => {
+        return game.ownerId === getters.user.id
+      })
     },
     gameById: (state) => (gameId) => {
       return state.games.find(game => game.id === gameId)
