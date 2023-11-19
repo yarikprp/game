@@ -99,10 +99,8 @@ export default {
     myGames (state) {
       return state.games
     },
-    gamesId (state) {
-      return gamesId => {
-        return state.games.find(games => games.id === gamesId)
-      }
+    gameById: (state) => (gameId) => {
+      return state.games.find(game => game.id === gameId)
     }
   }
 }

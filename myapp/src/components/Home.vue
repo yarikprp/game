@@ -6,12 +6,12 @@
         <v-flex xs12>
           <v-carousel>
             <v-carousel-item
-              v-for="games in promoGames"
-              :key="games.id"
-              :src="games.imageSrc"
+              v-for="game in promoGames"
+              :key="game.id"
+              :src="game.imageSrc"
             >
               <div class="car-link">
-                <v-btn class="error" :to="'/games/' + games.id">{{ games.title }}</v-btn>
+                <v-btn class="error" :to="'/games/' + game.id">{{ game.title }}</v-btn>
               </div>
             </v-carousel-item>
           </v-carousel>
@@ -68,7 +68,7 @@
 <script>
 export default {
   computed: {
-    promoFames () {
+    promoGames () {
       return this.$store.getters.promoGames
     },
     games () {
