@@ -6,8 +6,13 @@ import Vuetify from 'vuetify'
 import BuyModalComponent from '@/components/Shared/BuyModal'
 import 'vuetify/dist/vuetify.min.css'
 import * as fb from 'firebase'
+import colors from 'vuetify/es5/util/colors'
 
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+  theme: {
+    primary: colors.red.darken1
+  }
+})
 Vue.component('app-buy-modal', BuyModalComponent)
 Vue.config.productionTip = false
 
