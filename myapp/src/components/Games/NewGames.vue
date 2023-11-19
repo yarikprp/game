@@ -47,11 +47,12 @@
           <v-flex xs12>
             <v-spacer></v-spacer>
             <v-btn
-              :disabled="!valid"
+              :loading="loading"
+              :disabled="!valid || loading"
               class="success"
-              @click="createAd"
+              @click="createGames"
             >
-              Create ad
+              Create games
             </v-btn>
           </v-flex>
         </v-layout>
@@ -70,18 +71,27 @@
         valid: false
       }
     },
+    computed: {
+      loading () {
+        return this.$store.getters.loading
+      }
+    },
     methods: {
-      createAd () {
+      createGames () {
         if (this.$refs.form.validate()) {
           // logic
-          const ad = {
+          const games = {
             title: this.title,
             description: this.description,
             promo: this.promo,
             imageSrc: 'https://www.digiseller.ru/preview/913799/p1_3757622_1bec89f6.jpg'
           }
 
-          this.$store.dispatch('createAd', ad)
+          this.$store.dispatch('createGames', games)
+            .then(() => {
+              this.$router.push('/list')
+            })
+            .catch(() => {})
         }
       }
     }

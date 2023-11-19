@@ -1,17 +1,17 @@
 <template>
 
-  <div>
+  <div v-if="!loading">
     <v-container fluid>
       <v-layout row>
         <v-flex xs12>
           <v-carousel>
             <v-carousel-item
-              v-for="ad in promoAds"
-              :key="ad.id"
-              :src="ad.imageSrc"
+              v-for="games in promoGames"
+              :key="games.id"
+              :src="games.imageSrc"
             >
               <div class="car-link">
-                <v-btn class="error" :to="'/ad/' + ad.id">{{ ad.title }}</v-btn>
+                <v-btn class="error" :to="'/games/' + games.id">{{ games.title }}</v-btn>
               </div>
             </v-carousel-item>
           </v-carousel>
@@ -24,27 +24,41 @@
           xs12
           sm6
           md4
-          v-for="ad of ads"
-          :key="ad.id"
+          v-for="games of games"
+          :key="games.id"
         >
           <v-card>
             <v-card-media
-              :src="ad.imageSrc"
+              :src="games.imageSrc"
               height="200px"
             >
             </v-card-media>
             <v-card-title primary-title>
               <div>
-                <h3 class="headline mb-0">{{ad.title}}</h3>
-                <div>{{ad.description}}</div>
+                <h3 class="headline mb-0">{{games.title}}</h3>
+                <div>{{games.description}}</div>
               </div>
             </v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn flat :to="'/ad/' + ad.id">Open</v-btn>
+              <v-btn flat :to="'/games/' + games.id">Open</v-btn>
               <v-btn raised class="primary">Buy</v-btn>
             </v-card-actions>
           </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </div>
+  <div v-else>
+    <v-container>
+      <v-layout row>
+        <v-flex xs12 class="text-xs-center pt-5">
+          <v-progress-circular
+            indeterminate
+            :size="100"
+            :width="4"
+            color="purple"
+          ></v-progress-circular>
         </v-flex>
       </v-layout>
     </v-container>
@@ -54,11 +68,14 @@
 <script>
 export default {
   computed: {
-    promoAds () {
-      return this.$store.getters.promoAds
+    promoFames () {
+      return this.$store.getters.promoGames
     },
-    ads () {
-      return this.$store.getters.ads
+    games () {
+      return this.$store.getters.games
+    },
+    loading () {
+      return this.$store.getters.loading
     }
   }
 }

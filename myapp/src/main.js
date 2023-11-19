@@ -21,6 +21,7 @@ new Vue({
     fb.initializeApp({
       apiKey: 'AIzaSyDL9CsbaZCM5REhzXH46m2Y2GhOyODDIME',
       authDomain: 'itsi-d7b5f.firebaseapp.com',
+      databaseURL: 'https://itsi-d7b5f-default-rtdb.firebaseio.com/',
       projectId: 'itsi-d7b5f',
       storageBucket: 'itsi-d7b5f.appspot.com',
       messagingSenderId: '492925303666',
@@ -33,5 +34,7 @@ new Vue({
         this.$store.dispatch('autoLoginUser', user)
       }
     })
+
+    this.$store.dispatch('fetchGames')
   }
 })
