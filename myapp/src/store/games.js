@@ -28,21 +28,32 @@ export default {
       commit('clearError')
       commit('setLoading', true)
 
+      const image = payload.image
+
       try {
         const newGames = new Games(
           payload.title,
           payload.description,
           getters.user.id,
-          payload.imageSrc,
+          '',
           payload.promo
         )
 
         const games = await fb.database().ref('games').push(newGames)
+        const imageExt = image.name.slice(image.name.lastIndexOf('.'))
+
+        const fileData = await fb.storage().ref(`games/${games.key}.${imageExt}`).put(image)
+        const imageSrc = fileData.metadata.downloadURLs[0]
+
+        await fb.database().ref('games').child(games.key).update({
+          imageSrc
+        })
 
         commit('setLoading', false)
         commit('createGames', {
           ...newGames,
-          id: games.key
+          id: games.key,
+          imageSrc
         })
       } catch (error) {
         commit('setError', error.message)
